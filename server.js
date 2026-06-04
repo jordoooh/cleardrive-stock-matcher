@@ -50,6 +50,8 @@ const server = http.createServer((req, res) => {
     } catch {
       body = {};
     }
+ const { args } = require("./matcher").extractToolCall(body);
+    console.log("[check-stock] criteria received:", JSON.stringify(args));
     const out = await handleToolCall(body);
     if (out.error) console.error("[check-stock] soft error:", out.error);
     console.log(
